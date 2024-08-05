@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <style>
+    body {
+      background-color: #000;
+    }
+
+    .mdl-layout__header {
+      background-color: #000;
+      border-bottom: 1px solid;
+    }
+
+    .container {
+      max-width: 500px;
+      margin-top: 50px;
+      padding: 30px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group label {
+      font-weight: bold;
+    }
+
+    .btn-custom {
+      background-color: rgba(248, 68, 100);
+      color: #fff;
+    }
+
+    .btn-custom:hover {
+      background-color: rgba(248, 68, 100, 0.5);
+      transform: scale(1.05);
+    }
+
+    .mdl-navigation__link {
+      text-decoration: none;
+    }
+
+    .mdl-navigation__link:hover {
+      text-decoration: none;
+    }
+
+    .mdl-layout-title a {
+      font-size: 1em;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .mdl-layout-title a:hover {
+      text-decoration: none;
+    }
+  </style>
+  <title>MovieMania</title>
+</head>
+
+<body>
+
+  <!-- Always shows a header, even in smaller screens. -->
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+      <div class="mdl-layout__header-row">
+        <!-- Title -->
+        <span class="mdl-layout-title">
+          <a href="/showmovies">MovieMania</a>
+        </span>
+        <div class="mdl-layout-spacer"></div>
+        <nav class="mdl-navigation mdl-layout--large-screen-only">
+          <a class="mdl-navigation__link" href="/" role="button">Logout</a>
+        </nav>
+      </div>
+    </header>
+    <div class="mdl-layout__drawer">
+      <span class="mdl-layout-title">Hi,{{USER}}</span>
+      <nav class="mdl-navigation">
+        <a class="mdl-navigation__link" href="/" role="button">Logout</a>
+      </nav>
+    </div>
+    <div class="container">
+      <h3 class="text-center">Book Tickets for {{movie}}</h3>
+      <form action="/checkAvail" method="POST">
+        <div class="form-group">
+          <label for="selectedMovie">Selected Movie</label>
+          <input type="text" class="form-control" id="selectedMovie" name="movie" value="{{ movie }}" readonly>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Select Venue</label>
+          <select class="form-control" id="exampleFormControlSelect1" name="venue">
+            {% for vname in vnames %}
+            <option>{{vname}}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Date</label>
+          <input type="Date" class="form-control" id="exampleFormControlInput1" placeholder="DD-MMM-YYYY" name="date"
+            min="{{ current_date }}">
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlInput1">No of Tickets</label>
+          <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="No of Tickets"
+            name="no_of_tickets" min="1">
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Show Time</label>
+          <select class="form-control" id="exampleFormControlSelect1" name="show_no">
+            <option>9.00 AM</option>
+            <option>12.00 PM</option>
+            <option>3.00 PM</option>
+            <option>6.00 PM</option>
+            <option>9.00 PM</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-custom btn-block" input type="submit">CHECK</button>
+      </form>
+    </div>
+  </div>
+
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
